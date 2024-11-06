@@ -211,7 +211,6 @@ RSpec.describe CaesarCipher do
         valid_input = '1'
 
         allow(cipher).to receive(:gets).and_return(invalid_input, valid_input) # stubbed user input
-        allow(cipher).to receive(:valid_shift?).and_return(false, true)
 
         cipher.choose_shift
         expect(cipher).to have_received(:gets).twice
@@ -222,7 +221,6 @@ RSpec.describe CaesarCipher do
         valid_input = '1'
 
         allow(cipher).to receive(:gets).and_return(invalid_input, invalid_input, valid_input) # stubbed user input
-        allow(cipher).to receive(:valid_shift?).and_return(false, false, true)
 
         cipher.choose_shift
         expect(cipher).to have_received(:gets).exactly(3).times
