@@ -117,4 +117,37 @@ RSpec.describe RecursiveMethods do
       end
     end
   end
+
+  describe "#flatten" do
+
+    context "when taking a nested array as the argument" do
+      it "returns the flattened array" do
+        nested_array = [1,[2]]
+        flattened_array = [1, 2]
+        expect(recursive_method.flatten(nested_array)).to eq([1, 2])
+      end
+    end
+
+    context "when taking an empty array [] as the argument" do
+      it "returns an empty array []" do
+        empty_array = []
+        expect(recursive_method.flatten(empty_array)).to eq(empty_array)
+      end
+    end
+
+    context "when taking anything other than an array as the argument" do
+      it "returns an array with the input's single elements" do
+        random_string = "string"
+        expected_result = ["s", "t", "r", "i", "n", "g"]
+        expect(recursive_method.flatten(random_string)).to eq(expected_result)
+      end
+    end
+
+    context "when the argument is a flat array" do
+      it "does not change it" do
+        flat_array = [1, 2]
+        expect(recursive_method.flatten(flat_array)).to eq(flat_array)
+      end
+    end
+  end
 end

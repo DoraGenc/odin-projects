@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../scr/caesar_cipher'
 
 RSpec.describe CaesarCipher do

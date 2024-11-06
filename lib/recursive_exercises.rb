@@ -43,4 +43,14 @@ class RecursiveMethods
       return 0
     end
   end
+
+  def flatten(input)
+    return [] if input.empty?
+  
+    if input[0].is_a?(Array)
+      flatten(input[0]) + flatten(input[1..-1])
+    else
+      [input[0]] + flatten(input[1..-1])
+    end
+  end
 end
