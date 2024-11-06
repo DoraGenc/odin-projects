@@ -16,4 +16,14 @@ class RecursiveMethods
       end
     end
   end
+
+  def bottles_of_beer(number_of_bottles)
+
+    if number_of_bottles <= 0 || !(number_of_bottles.is_a?(Integer))
+      puts "No more bottles of beer on the wall. :("
+    else
+      puts "#{number_of_bottles} bottles of beer on the wall"
+      bottles_of_beer(number_of_bottles - 1)
+    end
+  end
 end
