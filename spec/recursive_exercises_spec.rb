@@ -1,14 +1,14 @@
 require_relative '../lib/recursive_exercises'
 
 RSpec.describe RecursiveMethods do
-  subject(:method) { described_class.new }
+  subject(:instance) { described_class.new }
 
   describe "#is_palindrome?" do
     context "when the input is a palindrome" do
       
       it "returns true" do
         palindrome = "anna"
-        expect(is_palindrome?(palindrome)).to return(true)
+        expect(instance.is_palindrome?(palindrome)).to eq(true)
       end
     end
   end
