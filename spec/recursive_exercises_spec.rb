@@ -81,4 +81,40 @@ RSpec.describe RecursiveMethods do
       end
     end
   end
+
+  describe "#fibonacci" do
+    context "when taking a positive integer as the argument" do
+      it "returns the correct fibonacci number" do
+        positive_integer = 6
+        fibo_num = 8
+        expect(recursive_method.fibonacci(positive_integer)).to eq(fibo_num)
+      end
+    end
+
+    context "when taking anything other than an integer" do
+      it "returns 0" do
+        float = 6.0
+        expect(recursive_method.fibonacci(float)).to eq(0)
+      end
+    end
+
+    context "when taking a negative integer as the argument" do
+      it "returns 0" do
+        negative_integer = -6
+        expect(recursive_method.fibonacci(negative_integer)).to eq(0)
+      end
+    end
+
+    context "when the input is 1" do
+      it "returns 1" do
+        expect(recursive_method.fibonacci(1)).to eq(1)
+      end
+    end
+
+    context "when the input is 0" do
+      it "returns 0" do
+        expect(recursive_method.fibonacci(0)).to eq(0)
+      end
+    end
+  end
 end

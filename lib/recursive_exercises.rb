@@ -26,4 +26,21 @@ class RecursiveMethods
       bottles_of_beer(number_of_bottles - 1)
     end
   end
+
+  def fibonacci(num)
+
+    if num.is_a?(Integer) && num >= 0
+
+      if num == 0
+        return 0
+
+      elsif num == 1
+        return 1
+      else
+        fibonacci(num-1) + fibonacci(num-2)
+      end
+    else
+      return 0
+    end
+  end
 end
