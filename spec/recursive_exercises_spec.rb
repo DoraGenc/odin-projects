@@ -44,6 +44,7 @@ RSpec.describe RecursiveMethods do
         expect(recursive_method.is_palindrome?(incoherent_invalid_palindrome)).to eq(false)
       end
     end
+    #leerer String
   end
 
   describe "#bottles_of_beer" do
@@ -55,7 +56,7 @@ RSpec.describe RecursiveMethods do
     context "when taking a positive integer as the argument" do
       it "outputs to stdout" do
         number_of_bottles = 3
-        expect{ recursive_method.bottles_of_beer(number_of_bottles) }.to output.to_stdout
+        expect{ recursive_method.bottles_of_beer(number_of_bottles) }.to output.to_stdout #was  wird ausgegeben
       end
 
       it 'outputs to stdout exactly as many times as the argument specifies' do
@@ -131,14 +132,15 @@ RSpec.describe RecursiveMethods do
     context "when taking an empty array [] as the argument" do
       it "returns an empty array []" do
         empty_array = []
-        expect(recursive_method.flatten(empty_array)).to eq(empty_array)
+        expected_result = []
+        expect(recursive_method.flatten(empty_array)).to eq(expected_result)
       end
     end
 
-    context "when taking anything other than an array as the argument" do
-      it "returns an array with the input's single elements" do
+    context "when taking anything other than an array as the argument" do #ändern
+      it "returns an error" do
         random_string = "string"
-        expected_result = ["s", "t", "r", "i", "n", "g"]
+        expected_result = "Invalid input. Please only enter in arrays."
         expect(recursive_method.flatten(random_string)).to eq(expected_result)
       end
     end
@@ -146,7 +148,45 @@ RSpec.describe RecursiveMethods do
     context "when the argument is a flat array" do
       it "does not change it" do
         flat_array = [1, 2]
-        expect(recursive_method.flatten(flat_array)).to eq(flat_array)
+        expected_result = [1, 2]
+        expect(recursive_method.flatten(flat_array)).to eq(expected_result)
+      end
+    end
+
+
+
+    #doppelt nested
+  end
+
+  describe "#int_to_roman" do
+    context "when it takes a positive integer" do
+      it "converts it to a roman number correctly" do
+        positive_integer = 4
+        expected_result = "IV"
+        expect(recursive_method.int_to_roman(positive_integer)).to eq(expected_result)
+      end
+    end
+
+    context "when it takes a negative integer" do
+      it "returns an error" do
+        negative_integer = -1
+        expected_result = "Invalid input. Please only enter in positive integers"
+        expect(recursive_method.int_to_roman(negative_integer)).to eq(expected_result)
+      end
+    end
+
+    context "when it takes 0 as the argument" do
+      it "returns an empty string" do
+        expected_result = ""
+        expect(recursive_method.int_to_roman(0)).to eq(expected_result)
+      end
+    end
+
+    context "when it takes a number which is bigger than 3999" do
+      it "does not return the correct roman number anymore" do
+        big_num = 4000
+        wrong_roman_number = "MMMM"
+        expect(recursive_method.int_to_roman(big_num)).to eq(wrong_roman_number)
       end
     end
   end

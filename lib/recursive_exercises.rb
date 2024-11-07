@@ -1,4 +1,23 @@
 class RecursiveMethods
+
+  def initialize
+
+    @roman_mapping = {
+      1000 => "M",
+      900 => "CM",
+      500 => "D",
+      400 => "CD",
+      100 => "C",
+      90 => "XC",
+      50 => "L",
+      40 => "XL",
+      10 => "X",
+      9 => "IX",
+      5 => "V",
+      4 => "IV",
+      1 => "I"
+    }
+  end
   
   def is_palindrome?(input_string)
 
@@ -7,13 +26,13 @@ class RecursiveMethods
     end
 
     if input_string.length == 1 || input_string.length == 0
-      true
+      return true
+    end
+
+    if input_string[0] == input_string[-1]
+      is_palindrome?(input_string[1..-2])
     else
-      if input_string[0] == input_string[-1]
-        is_palindrome?(input_string[1..-2])
-      else
-        false
-      end
+      false
     end
   end
 
@@ -44,8 +63,11 @@ class RecursiveMethods
     end
   end
 
-  def flatten(input)
+  #case
+
+  def flatten(input) 
     return [] if input.empty?
+    return "Invalid input. Please only enter in arrays." if !(input.is_a?(Array))
   
     if input[0].is_a?(Array)
       flatten(input[0]) + flatten(input[1..-1])
@@ -53,4 +75,30 @@ class RecursiveMethods
       [input[0]] + flatten(input[1..-1])
     end
   end
+
+  def int_to_roman(num, result = "")
+    
+    if num.is_a?(Integer) && num > -1
+
+      if num == 0
+        return result
+      end
+
+      roman_mapping.keys.each do |divisor|
+        quotient = num / divisor #wie oft passt der divisor in die num
+        modulus = num % divisor #was ist der rest dabei
+
+        if quotient > 0
+          result << roman_mapping[divisor] * quotient #so oft das zeichen in result, wie es reinpasst
+          return int_to_roman(modulus, result)
+        end 
+      end
+    else
+      "Invalid input. Please only enter in positive integers"
+    end
+  end
+
+  private
+
+  attr_reader :roman_mapping
 end
