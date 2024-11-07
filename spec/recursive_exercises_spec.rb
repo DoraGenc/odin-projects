@@ -170,8 +170,8 @@ RSpec.describe RecursiveMethods do
     context "when it takes a negative integer" do
       it "returns an error" do
         negative_integer = -1
-        expected_result = "Invalid input. Please only enter in positive integers"
-        expect(recursive_method.int_to_roman(negative_integer)).to eq(expected_result)
+        error =  "Invalid Input. Please only enter in positive integers up to 3999."
+        expect(recursive_method.int_to_roman(negative_integer)).to eq(error)
       end
     end
 
@@ -183,10 +183,37 @@ RSpec.describe RecursiveMethods do
     end
 
     context "when it takes a number which is bigger than 3999" do
-      it "does not return the correct roman number anymore" do
+      it "returns an error" do
         big_num = 4000
-        wrong_roman_number = "MMMM"
-        expect(recursive_method.int_to_roman(big_num)).to eq(wrong_roman_number)
+        error =  "Invalid Input. Please only enter in positive integers up to 3999."
+        expect(recursive_method.int_to_roman(big_num)).to eq(error)
+      end
+    end
+  end
+
+  describe "#roman_to_int" do
+    
+    context "when the input is a roman number between 1 and 3999" do
+      it "converts the roman number correctly" do
+        forty_one = "XLI"
+        expected_result = 41
+        expect(recursive_method.roman_to_int(forty_one)).to eq(expected_result)
+      end
+    end
+
+    context "when the input is a roman number above 3999" do
+      it "returns an error" do
+        big_roman_num = "MMMM"
+        error = "Invalid Input. Please only enter in positive integers up to 3999."
+        expect(recursive_method.roman_to_int(big_roman_num)).to eq(error)
+      end
+    end
+
+    context "when the input is anything other than a string" do
+      it "returns an error" do
+        integer = 1
+        error = "Invalid Input. Please only enter in positive integers up to 3999."
+        expect(recursive_method.roman_to_int(integer)).to eq(error)
       end
     end
   end

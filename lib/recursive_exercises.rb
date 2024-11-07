@@ -78,7 +78,7 @@ class RecursiveMethods
 
   def int_to_roman(num, result = "")
     
-    if num.is_a?(Integer) && num > -1
+    if num.is_a?(Integer) && num > -1 && num < 4000
 
       if num == 0
         return result
@@ -94,9 +94,28 @@ class RecursiveMethods
         end 
       end
     else
-      "Invalid input. Please only enter in positive integers"
+      "Invalid Input. Please only enter in positive integers up to 3999."
     end
   end
+
+  def roman_to_int(roman_num, result = 0)
+
+    if roman_num[0..3] != "MMMM" && roman_num.is_a?(String)
+      if roman_num.empty?
+        return result
+      end
+
+      roman_mapping.each do |key, value|
+          
+        if roman_num[0, value.length] == value # weil z.B. IV 2 Stellen lang ist
+          result += key
+          return roman_to_int(roman_num[value.length..-1], result)
+        end
+      end
+    else
+     "Invalid Input. Please only enter in positive integers up to 3999."
+    end
+  end 
 
   private
 
